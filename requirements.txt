@@ -1,5 +1,6 @@
 fastapi
 uvicorn
-psutil
+gunicorn
 pydantic
+psutil
 python-multipart
