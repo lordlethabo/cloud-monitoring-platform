@@ -51,18 +51,13 @@ def resolve_incident(incident_id: str):
 
 
 def get_dashboard_stats():
-    total_servers = len(servers_db)
-    total_incidents = len(incidents_db)
-    open_incidents = len(get_open_incidents())
-    resolved_incidents = len([
-        incident for incident in incidents_db
-        if incident.status == "RESOLVED"
-    ])
-
     return {
-        "total_servers": total_servers,
+        "total_servers": len(servers_db),
         "total_metrics": len(metrics_db),
-        "total_incidents": total_incidents,
-        "open_incidents": open_incidents,
-        "resolved_incidents": resolved_incidents
+        "total_incidents": len(incidents_db),
+        "open_incidents": len(get_open_incidents()),
+        "resolved_incidents": len([
+            incident for incident in incidents_db
+            if incident.status == "RESOLVED"
+        ])
     }
