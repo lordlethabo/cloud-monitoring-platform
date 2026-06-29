@@ -28,48 +28,4 @@ def get_db():
     try:
         yield db
     finally:
-        db.close()    """
-    Return dashboard statistics.
-    """
-
-    total_servers = len(servers_db)
-    total_metrics = len(metrics_db)
-    total_incidents = len(incidents_db)
-
-    healthy_servers = len([
-        server for server in servers_db
-        if server.status == "HEALTHY"
-    ])
-
-    warning_servers = len([
-        server for server in servers_db
-        if server.status == "WARNING"
-    ])
-
-    critical_servers = len([
-        server for server in servers_db
-        if server.status == "CRITICAL"
-    ])
-
-    open_incidents = len([
-        incident
-        for incident in incidents_db
-        if incident.status == "OPEN"
-    ])
-
-    resolved_incidents = len([
-        incident
-        for incident in incidents_db
-        if incident.status == "RESOLVED"
-    ])
-
-    return {
-        "total_servers": total_servers,
-        "healthy_servers": healthy_servers,
-        "warning_servers": warning_servers,
-        "critical_servers": critical_servers,
-        "total_metrics": total_metrics,
-        "total_incidents": total_incidents,
-        "open_incidents": open_incidents,
-        "resolved_incidents": resolved_incidents
-    }
+        db.close()
