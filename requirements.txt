@@ -4,3 +4,4 @@ gunicorn
 pydantic
 psutil
 python-multipart
+pydantic-settings
