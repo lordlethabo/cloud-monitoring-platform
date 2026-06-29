@@ -1,49 +1,45 @@
-import uuid
-from datetime import datetime
-
-from app.models import Incident
+from app.schemas import IncidentCreate
 from app.recommendations import get_recommendation
+from app.settings import settings
+from app.utils import generate_incident_id
 
 
 def detect_incidents(metric):
     incidents = []
 
-    if metric.cpu_usage >= 90:
+    if metric.cpu_usage >= settings.CPU_CRITICAL:
         incidents.append(
-            Incident(
-                incident_id=str(uuid.uuid4()),
+            IncidentCreate(
+                incident_id=generate_incident_id(),
                 server_id=metric.server_id,
                 issue="High CPU Usage",
                 severity="CRITICAL",
                 status="OPEN",
-                recommendation=get_recommendation("High CPU Usage"),
-                timestamp=datetime.now()
+                recommendation=get_recommendation("High CPU Usage")
             )
         )
 
-    if metric.memory_usage >= 90:
+    if metric.memory_usage >= settings.MEMORY_CRITICAL:
         incidents.append(
-            Incident(
-                incident_id=str(uuid.uuid4()),
+            IncidentCreate(
+                incident_id=generate_incident_id(),
                 server_id=metric.server_id,
                 issue="High Memory Usage",
                 severity="CRITICAL",
                 status="OPEN",
-                recommendation=get_recommendation("High Memory Usage"),
-                timestamp=datetime.now()
+                recommendation=get_recommendation("High Memory Usage")
             )
         )
 
-    if metric.disk_usage >= 90:
+    if metric.disk_usage >= settings.DISK_CRITICAL:
         incidents.append(
-            Incident(
-                incident_id=str(uuid.uuid4()),
+            IncidentCreate(
+                incident_id=generate_incident_id(),
                 server_id=metric.server_id,
                 issue="Low Disk Space",
                 severity="CRITICAL",
                 status="OPEN",
-                recommendation=get_recommendation("Low Disk Space"),
-                timestamp=datetime.now()
+                recommendation=get_recommendation("Low Disk Space")
             )
         )
 
