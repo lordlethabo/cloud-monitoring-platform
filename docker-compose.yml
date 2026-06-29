@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  cloud-monitoring-platform:
+    build: .
+    container_name: cloud-monitoring-platform
+
+    ports:
+      - "8000:8000"
+
+    restart: unless-stopped
+
+    environment:
+      - PYTHONUNBUFFERED=1
+
+    volumes:
+      - .:/app
