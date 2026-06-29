@@ -1,11 +1,21 @@
+RECOMMENDATIONS = {
+    "High CPU Usage": (
+        "Investigate running processes, optimize workloads, "
+        "or increase CPU resources."
+    ),
+    "High Memory Usage": (
+        "Check for memory leaks, restart affected services, "
+        "or increase available memory."
+    ),
+    "Low Disk Space": (
+        "Remove unnecessary files, archive old logs, "
+        "or increase disk capacity."
+    ),
+}
+
+
 def get_recommendation(issue: str) -> str:
-    if issue == "High CPU Usage":
-        return "Investigate running processes, stop unnecessary services, and consider scaling the server."
-
-    if issue == "High Memory Usage":
-        return "Check for memory leaks, restart heavy services, and optimize application memory usage."
-
-    if issue == "Low Disk Space":
-        return "Remove unused files, rotate logs, clean temporary files, or increase disk storage."
-
-    return "Review server health, check recent deployments, and investigate system logs."
+    return RECOMMENDATIONS.get(
+        issue,
+        "No recommendation available."
+    )
