@@ -5,3 +5,5 @@ pydantic
 psutil
 python-multipart
 pydantic-settings
+sqlalchemy
+python-dotenv
